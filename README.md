@@ -15,6 +15,8 @@ If is different,  change in the file  `application.properties` the section
 
 In MAMP press Start Server 
 
+Run in compiler ShopAppliation 
+
 In browser Open http://localhost:8080/
 
 
