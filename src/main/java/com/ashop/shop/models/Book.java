@@ -1,11 +1,9 @@
-package com.ashop.shop.controllers.models;
-
-
-
+package com.ashop.shop.models;
 
 
 import javax.persistence.*;
 import java.io.Serializable;
+
 @Entity
 public class Book implements Serializable {
     public Book(String bookTitle, String description, String img) {
@@ -19,15 +17,15 @@ public class Book implements Serializable {
 //    @Column(nullable = false, updatable=false)
     private Long id;
     private String bookTitle;
-    private  String description;
+    private String description;
 
 
     private String img;
-    @Column(nullable = false,updatable = false)
+    @Column(nullable = false, updatable = false)
     private String bookCode;
 
-    public Book(){}
-
+    public Book() {
+    }
 
 
     public void setId(Long id) {

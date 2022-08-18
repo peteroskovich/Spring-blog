@@ -1,10 +1,7 @@
-package com.ashop.shop.controllers;
+package com.ashop.shop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @SpringBootApplication
 public class ShopApplication {

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class GreetingController {
 
     @GetMapping("/")
-    public String greeting  (Model model){
+    public String greeting(Model model) {
 //    public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model)
 
 //        model.addAttribute("name", name);
@@ -18,9 +18,8 @@ public class GreetingController {
     }
 
 
-
     @GetMapping("/support")
-    public String support  (Model model){
+    public String support(Model model) {
 //    public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model)
 
 //        model.addAttribute("name", name);
