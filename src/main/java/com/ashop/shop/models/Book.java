@@ -6,26 +6,21 @@ import java.io.Serializable;
 
 @Entity
 public class Book implements Serializable {
+    public Book() {
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private String bookTitle, description, img;
+
     public Book(String bookTitle, String description, String img) {
         this.bookTitle = bookTitle;
         this.description = description;
         this.img = img;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-//    @Column(nullable = false, updatable=false)
-    private Long id;
-    private String bookTitle;
-    private String description;
-
-
-    private String img;
-    @Column(nullable = false, updatable = false)
-    private String bookCode;
-
-    public Book() {
-    }
 
 
     public void setId(Long id) {
@@ -60,13 +55,13 @@ public class Book implements Serializable {
         this.img = img;
     }
 
-    public String getBookCode() {
-        return bookCode;
-    }
-
-    public void setBookCode(String bookCode) {
-        this.bookCode = bookCode;
-    }
+//    public String getBookCode() {
+//        return bookCode;
+//    }
+//
+//    public void setBookCode(String bookCode) {
+//        this.bookCode = bookCode;
+//    }
 
     @Override
     public String toString() {
@@ -74,7 +69,6 @@ public class Book implements Serializable {
                 "title='" + bookTitle + '\'' +
                 ", description='" + description + '\'' +
                 ", img=" + img +
-                ", bookCode='" + bookCode + '\'' +
                 '}';
     }
 }
