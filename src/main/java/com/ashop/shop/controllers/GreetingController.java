@@ -1,10 +1,8 @@
 package com.ashop.shop.controllers;
 
 import com.ashop.shop.models.Book;
-import com.ashop.shop.models.Post;
 import com.ashop.shop.repositories.BookRepository;
 import com.ashop.shop.services.BookService;
-import com.ashop.shop.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -84,13 +82,8 @@ public class GreetingController {
     }
 
     @PostMapping("/book/{id}/edit")
-    public String bookPostUpdate(@PathVariable(value = "id") long id, @RequestParam String bookTitle, @RequestParam String description, @RequestParam String img) {
-        Book book = bookRepository.findById(id).orElseThrow();
-        book.setBookTitle(bookTitle);
-        book.setDescription(description);
-        book.setImg(img);
-        bookRepository.save(book);
-
+    public String bookPostUpdate(@PathVariable(value = "id") long id, @RequestParam("file") MultipartFile file, @RequestParam String bookTitle, @RequestParam String description) {
+       bookService.editBook(id,file,bookTitle,description);
         return "redirect:/";
     }
 

@@ -15,12 +15,16 @@
 
     <!--  adding method post instead of get for privacy data exchange with server to avoid exchange through URL -->
     <div th:each="element :${book}">
-        <form  method="post">
+        <form  method="post" enctype="multipart/form-data">
             <!--  field where user can add text -->
             <input type="text" th:value="${element.bookTitle}" name="bookTitle" placeholder="Enter name of book" class="form-control"><br>
             <input type="text"  th:value="${element.description}" name="description" placeholder="Type the description " class="form-control"><br>
-            <textarea  name="img" th:value="${element.img}" placeholder="Enter img" class="form-control"></textarea><br>
-            <button type="submit" class="btn btn-success">Edit</button>
+            <div class="custom-file mb-4">
+                <input type="file" name="file" class="custom-file-input"
+                       id="customFile"> <label class="custom-file-label"
+                                               for="customFile">Book Image</label>
+            </div>
+             <button type="submit" class="btn btn-success">Edit</button>
 
         </form>
     </div>
