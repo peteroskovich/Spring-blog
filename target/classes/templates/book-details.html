@@ -13,8 +13,9 @@
 
     <div th:each="element : ${book}" class="alert alert-info mt-2">
         <h1 th:text="${element.bookTitle}"/>
+        <p><img alt="" th:src="*{'data:img/jpeg;base64,'+{element.img}}" style="height: 225px; width: 225px;">
+        </p>
         <p th:text="${element.description}"/>
-        <p  th:text="${element.img}"></p>
 
         <a th:href="'/book/'+${element.id} + '/edit'" class="btn btn-warning">Edit</a><br><br>
         <form th:action="'/book/' +${element.id} + '/remove'" method="post">

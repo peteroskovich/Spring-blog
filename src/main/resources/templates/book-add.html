@@ -12,13 +12,18 @@
     <h1 >Add book</h1>
 
     <!--  adding method post instead of get for privacy data exchange with server to avoid exchange through URL -->
-
-    <form action="/book/add" method="post">
+<!-- adding enctype attirbute do specifies how form data should be encoded before sending it to the server-->
+    <form action="/book/add" method="post" enctype="multipart/form-data" >
         <!--  field where user can add text -->
         <input type="text" name="bookTitle" placeholder="Enter name of book" class="form-control"><br>
 
         <textarea  name="description" placeholder="Type the description" class="form-control"></textarea><br>
-        <textarea  name="img" placeholder="img" class="form-control"></textarea>
+        <div class="custom-file mb-4">
+            <input type="file" name="file" class="custom-file-input"
+                   id="customFile"> <label class="custom-file-label"
+                                           for="customFile">Product Image</label>
+        </div>
+
         <button type="submit" class="btn btn-success">Add book</button>
 <!--        <label for="img">Select image:</label>-->
 <!--        <input type="file" id="img" name="img" accept="image/*"><br>-->

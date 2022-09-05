@@ -3,6 +3,8 @@ package com.ashop.shop.controllers;
 import com.ashop.shop.models.Book;
 import com.ashop.shop.models.Post;
 import com.ashop.shop.repositories.BookRepository;
+import com.ashop.shop.services.BookService;
+import com.ashop.shop.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -19,6 +22,9 @@ public class GreetingController {
 
     @Autowired
     private BookRepository bookRepository;
+
+    @Autowired
+    private BookService bookService;
 
     @GetMapping("/")
     public String greeting(Model model) {
@@ -37,9 +43,10 @@ public class GreetingController {
 
 
     @PostMapping("/book/add")
-    public String bookPostAdd(@RequestParam String bookTitle, @RequestParam String description, @RequestParam String img) {
-        Book book = new Book(bookTitle, description, img);
-        bookRepository.save(book);
+    public String bookPostAdd(@RequestParam("file") MultipartFile file, @RequestParam String bookTitle, @RequestParam String description) {
+
+        //  instead   postRepository.save(post); delegate to separate services
+        bookService.addBook(file,bookTitle,description);
         return "redirect:/";
     }
 

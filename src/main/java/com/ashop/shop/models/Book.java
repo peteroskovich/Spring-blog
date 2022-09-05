@@ -13,7 +13,10 @@ public class Book implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String bookTitle, description, img;
+    private String bookTitle, description;
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
+    private String img;
 
     public Book(String bookTitle, String description, String img) {
         this.bookTitle = bookTitle;
