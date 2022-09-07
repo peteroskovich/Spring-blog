@@ -6,6 +6,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Configuration
 @EnableWebSecurity
@@ -24,14 +28,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .roles("ADMIN")
         ;
     }
-
+/*
+    @.anyMatchers  deny request from USER if it will try  bypass Security and digit URL Path commands like:
+    /blog/{id}/edit
+    /blog/remove
+    /blog/add
+ */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+//        http.formLogin()
+//                .loginPage("/login")
+//                .usernameParameter("email")
+//                .passwordParameter("password")
+//                .loginProcessingUrl("/doLogin")
+//                .successForwardUrl("/login_success_handler");
+
+
         http.authorizeRequests()
-                .antMatchers("/").permitAll()
-//                .antMatchers("/add").hasAnyRole( "ADMIN")
-                .antMatchers("/edit/*", "/delete/*","/add").hasRole("ADMIN")
+                .antMatchers("/blog/{id}/edit", "/blog/remove","/blog/add").hasRole("ADMIN")
                 .anyRequest().authenticated()
+                .and()
+                .formLogin().permitAll()
+                .and()
+                .logout().permitAll()
                 .and()
                 .httpBasic()
                 .and()

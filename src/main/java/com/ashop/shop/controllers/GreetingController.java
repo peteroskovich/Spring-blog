@@ -95,4 +95,10 @@ public class GreetingController {
         return "redirect:/";
 
     }
+    @PostMapping("/login_success_handler")
+    public String loginSuccessHandler() {
+        System.out.println("Logging user login success...");
+
+        return "greeting";
+    }
 }
