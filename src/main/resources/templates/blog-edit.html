@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymleaf-extras-springsecurity5">
 <head>
     <title>Edit article</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -14,9 +15,15 @@
     <h1 >Edit</h1>
 
     <!--  adding method post instead of get for privacy data exchange with server to avoid exchange through URL -->
+
     <div th:each="element :${post}">
-    <form  method="post">
-        <!--  field where user can add text -->
+
+<!--      path variable are passed from  controller page to  thymeleaf-->
+
+        <form  th:action="@{'/blog/' + ${id}+'/edit'}"   method="post">
+
+        <!--  field where user can add text associated with name of parameters of Post methods in @BlogController  -->
+
         <input type="text" th:value="${element.title}" name="title" placeholder="Enter name of article" class="form-control"><br>
         <input type="text"  th:value="${element.announcement}" name="announcement" placeholder="Enter announcement " class="form-control"><br>
         <textarea  name="full_text" placeholder="Type the text" class="form-control"></textarea><br>
@@ -27,5 +34,6 @@
 
 
 <div th:insert="sections/footer :: footer"></div>
+</div>
 </body>
 </html>

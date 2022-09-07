@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymleaf-extras-springsecurity5">
 <head>
     <title> Shop Blog</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -13,7 +14,7 @@
 
     <!--  adding method post instead of get for privacy data exchange with server to avoid exchange through URL -->
 
-    <form action="/blog/add" method="post">
+    <form th:action="@{/blog/add}" method="post">
         <!--  field where user can add text -->
         <input type="text" name="title" placeholder="Enter name of article" class="form-control"><br>
         <input type="text" name="announcement" placeholder="Enter announcement " class="form-control"><br>

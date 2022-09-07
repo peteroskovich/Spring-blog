@@ -1,14 +1,17 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymleaf-extras-springsecurity5">
 <head>
     <title>Shop </title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-<header th:insert="sections/header :: header"></header>
-<main role="main">
 
+<header th:insert="sections/header :: header"></header>
+
+<main role="main">
+    <div sec:authorize="hasRole('ADMIN')">
     <section class="jumbotron text-center">
         <div class="container">
             <h1 class="jumbotron-heading">Here you can create a blog article or book article </h1>
@@ -19,6 +22,7 @@
             </p>
         </div>
     </section>
+    </div>
 
     <div   class="album py-5 bg-light">
         <div class="container">
@@ -45,10 +49,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
             </div>
         </div>
     </div>

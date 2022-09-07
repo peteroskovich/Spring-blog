@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymleaf-extras-springsecurity5">
 <head>
     <title> Shop Book</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -13,7 +14,7 @@
 
     <!--  adding method post instead of get for privacy data exchange with server to avoid exchange through URL -->
 <!-- adding enctype attirbute do specifies how form data should be encoded before sending it to the server-->
-    <form action="/book/add" method="post" enctype="multipart/form-data" >
+    <form th:action="@{/book/add}"  method="post" enctype="multipart/form-data" >
         <!--  field where user can add text -->
         <input type="text" name="bookTitle" placeholder="Enter name of book" class="form-control"><br>
 

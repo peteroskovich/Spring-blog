@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymleaf-extras-springsecurity5">
 <head>
     <title>Shop Book</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -17,10 +18,12 @@
         </p>
         <p th:text="${element.description}"/>
 
+        <div sec:authorize="hasRole('ADMIN')">
         <a th:href="'/book/'+${element.id} + '/edit'" class="btn btn-warning">Edit</a><br><br>
         <form th:action="'/book/' +${element.id} + '/remove'" method="post">
             <button class="btn btn-warning" type="submit">Delete</button>
         </form>
+            </div>
         <!--        <a th:href="'/blog/'+${element.id} + '/remove'" class="btn btn-warning">Delete</a>-->
     </div>
 </div>

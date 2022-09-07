@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymleaf-extras-springsecurity5">
 <head>
     <title> Shop Blog</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -12,9 +13,9 @@
 <div class="container mt-6">
     <h1 > Blog  </h1>
     <div th:each="element : ${posts}" class="alert alert-info mt-2">
-        <h2 th:text="${element.title}"/>
 
-        <p th:text="${element.title}"/>
+        <h2 th:text="${element.title}"/>
+        <p th:text="${element.announcement}"/>
         <a th:href="'/blog/'+${element.id} " class="btn btn-warning">Info</a>
     </div>
 </div>
