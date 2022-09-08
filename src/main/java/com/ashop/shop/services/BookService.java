@@ -22,6 +22,8 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
+
+
     public Book addBook(MultipartFile file, String bookTitle, String description) {
         Book book = new Book();
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -38,6 +40,8 @@ public class BookService {
         book.setBookTitle(bookTitle);
         return bookRepository.save(book);
     }
+
+
     public Book editBook(@PathVariable(value = "id") long id, @RequestParam MultipartFile file, @RequestParam String bookTitle, @RequestParam String description){
         Book book = bookRepository.findById(id).orElseThrow();
         book.setBookTitle(bookTitle);

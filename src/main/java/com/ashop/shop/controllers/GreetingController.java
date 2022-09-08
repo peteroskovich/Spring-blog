@@ -24,6 +24,11 @@ public class GreetingController {
     @Autowired
     private BookService bookService;
 
+    /**
+     * Handles the HTTP GET mapping request the list of created book posts
+     * @return main page
+     */
+
     @GetMapping("/")
     public String greeting(Model model) {
         Iterable<Book> books = bookRepository.findAll();
@@ -38,6 +43,16 @@ public class GreetingController {
     }
 
 
+    /**
+     * POST http request that saves Book object
+     *  .addBook method  delegate to separate services in class BookService  instead using  bookRepository.save(book)
+     * add the action instead of URL to method post
+     * @param  file encapsulate the uploaded image by user into object of MultipartFile
+     * @param bookTitle title of the book object
+     * @param description description of book object
+     * @return a redirection to the http request for the list of all book posts
+     */
+
     @PostMapping("/book/add")
     public String bookPostAdd(@RequestParam("file") MultipartFile file, @RequestParam String bookTitle, @RequestParam String description) {
 
@@ -46,12 +61,19 @@ public class GreetingController {
         return "redirect:/";
     }
 
+
+
     @GetMapping("/support")
     public String support(Model model) {
 
         model.addAttribute("name", "Di noi");
         return "support";
     }
+
+    /**
+     * Handles the HTTP GET mapping request that show specific book post by its own id.
+     * @return page with individual details of the book.
+     */
 
     @GetMapping("/book/{id}")
     public String bookDetails(@PathVariable(value = "id") long id, Model model) {
@@ -66,6 +88,15 @@ public class GreetingController {
         return "book-details";
     }
 
+    /**
+     * Handles the HTTP GET mapping request that allow to edit a single book post
+     * if post indicated by
+     * @param id is not exist in database it will
+     * @return redirect to all book
+     * Use Optional to store the retrieved book object from database through postRepository
+     * @return  redirect to edit sample page
+     */
+
     @GetMapping("/book/{id}/edit")
     public String blogEdit(@PathVariable(value = "id") long id, Model model) {
         if (!bookRepository.existsById(id)) {
@@ -78,11 +109,30 @@ public class GreetingController {
         return "book-edit";
     }
 
+    /**
+     * POST http request that  edit and saves the change of Book object
+     * it set the new parameter to the retrieved object by id
+     * @param id of book  object retrieved from the view template
+     * @param  file encapsulate the uploaded image by user into object of MultipartFile
+     * @param bookTitle title of the book object
+     * @param description description of book object
+     * @return a redirection to the main page
+     */
+
     @PostMapping("/book/{id}/edit")
     public String bookPostUpdate(@PathVariable(value = "id") long id, @RequestParam("file") MultipartFile file, @RequestParam String bookTitle, @RequestParam String description) {
         bookService.editBook(id, file, bookTitle, description);
         return "redirect:/";
     }
+
+    /**
+     * POST http request that  delete the Post object  retrieved by id
+     * from website and database
+     * @param id of post  object retrieved from the view template
+     * @param model encapsulates the  data that  present the book model with  its parameter
+     * @return a redirection to the main page
+     */
+
 
     @PostMapping("/book/{id}/remove")
     public String bookPostDelete(@PathVariable(value = "id") long id, Model model) {
