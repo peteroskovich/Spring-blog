@@ -36,7 +36,7 @@ public class BlogController {
     }
 
     // add the action instead of URL to method post
-//    @RequestMapping(value = "/blog/add", method = RequestMethod.POST)
+
     @PostMapping("/blog/add")
     public String blogPostAdd(@RequestParam String title, @RequestParam String announcement, @RequestParam String full_text) {
         Post post = new Post(title, announcement, full_text);
@@ -73,8 +73,8 @@ public class BlogController {
         return "blog-edit";
     }
 
-        @PostMapping("/blog/{id}/edit")
-//    @RequestMapping(value = "/blog/{id}/edit", method = RequestMethod.POST)
+    @PostMapping("/blog/{id}/edit")
+
     public String blogPostUpdate(@PathVariable(value = "id") long id, @RequestParam String title, @RequestParam String announcement, @RequestParam String full_text) {
         Post post = postRepository.findById(id).orElseThrow();
         post.setTitle(title);
@@ -86,7 +86,7 @@ public class BlogController {
     }
 
     @PostMapping("/blog/{id}/remove")
-//    @RequestMapping(value = "/blog/{id}/remove", method = RequestMethod.POST)
+
     public String blogPostDelete(@PathVariable(value = "id") long id, Model model) {
         Post post = postRepository.findById(id).orElseThrow();
         postRepository.delete(post);

@@ -26,7 +26,6 @@ public class Book implements Serializable {
     }
 
 
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -59,13 +58,6 @@ public class Book implements Serializable {
         this.img = img;
     }
 
-//    public String getBookCode() {
-//        return bookCode;
-//    }
-//
-//    public void setBookCode(String bookCode) {
-//        this.bookCode = bookCode;
-//    }
 
     @Override
     public String toString() {

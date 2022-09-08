@@ -26,11 +26,9 @@ public class GreetingController {
 
     @GetMapping("/")
     public String greeting(Model model) {
-//    public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model)
         Iterable<Book> books = bookRepository.findAll();
         model.addAttribute("books", books);
-//        model.addAttribute("name", name);
-//        model.addAttribute("name", "home page");
+
         return "greeting";
     }
 
@@ -44,15 +42,13 @@ public class GreetingController {
     public String bookPostAdd(@RequestParam("file") MultipartFile file, @RequestParam String bookTitle, @RequestParam String description) {
 
         //  instead   postRepository.save(post); delegate to separate services
-        bookService.addBook(file,bookTitle,description);
+        bookService.addBook(file, bookTitle, description);
         return "redirect:/";
     }
 
     @GetMapping("/support")
     public String support(Model model) {
-//    public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model)
 
-//        model.addAttribute("name", name);
         model.addAttribute("name", "Di noi");
         return "support";
     }
@@ -69,6 +65,7 @@ public class GreetingController {
         model.addAttribute("book", res);
         return "book-details";
     }
+
     @GetMapping("/book/{id}/edit")
     public String blogEdit(@PathVariable(value = "id") long id, Model model) {
         if (!bookRepository.existsById(id)) {
@@ -83,7 +80,7 @@ public class GreetingController {
 
     @PostMapping("/book/{id}/edit")
     public String bookPostUpdate(@PathVariable(value = "id") long id, @RequestParam("file") MultipartFile file, @RequestParam String bookTitle, @RequestParam String description) {
-       bookService.editBook(id,file,bookTitle,description);
+        bookService.editBook(id, file, bookTitle, description);
         return "redirect:/";
     }
 
@@ -95,6 +92,7 @@ public class GreetingController {
         return "redirect:/";
 
     }
+
     @PostMapping("/login_success_handler")
     public String loginSuccessHandler() {
         System.out.println("Logging user login success...");
