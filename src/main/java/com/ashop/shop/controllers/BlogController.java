@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Controller
 public class BlogController {
-    // tracks url address
+    
 
 
     @Autowired
@@ -22,7 +22,10 @@ public class BlogController {
     @Autowired
     private PostService postService;
 
-
+ /**
+     * Handles the HTTP GET mapping request the list of created blog posts
+     * @return a redirection to the blog page where all blogs are shown
+     */
     @GetMapping("/blog")
     public String blog(Model model) {
         Iterable<Post> posts = postRepository.findAll();
@@ -35,8 +38,16 @@ public class BlogController {
         return "blog-add";
     }
 
-    // add the action instead of URL to method post
-
+ 
+    /**
+     * POST http request that saves Post object
+     *  .addPost method  delegate to separate services  instead using  postRepository.save(post)
+     * add the action instead of URL to method post
+     * @param title tile  object retrieved from the view template
+     * @param announcement announcement   object retrieved from the view template
+     * @param full_text full_text object
+     * @return a redirection to the http request for the list of all blog posts
+     */
     @PostMapping("/blog/add")
     public String blogPostAdd(@RequestParam String title, @RequestParam String announcement, @RequestParam String full_text) {
         Post post = new Post(title, announcement, full_text);
@@ -45,6 +56,11 @@ public class BlogController {
 
         return "redirect:/blog";
     }
+    
+        /**
+     * Handles the HTTP GET mapping request that show specific blog post by its own id.
+     * @return page with individual details of the post.
+     */
 
     @GetMapping("/blog/{id}")
     public String blogDetails(@PathVariable(value = "id") long id, Model model) {
@@ -58,7 +74,14 @@ public class BlogController {
         model.addAttribute("post", res);
         return "blog-details";
     }
-
+/**
+     * Handles the HTTP GET mapping request that allow to edit a single blog post
+     * if post indicated by
+     * @param id is not exist in database it will
+     * @return redirect to all posts
+     * Use Optional to store the retrieved post from database through postRepository
+     * @return  redirect to edit sample page
+     */
 
     @GetMapping("/blog/{id}/edit")
     public String blogEdit(@PathVariable(value = "id") long id, Model model) {
@@ -72,6 +95,16 @@ public class BlogController {
         model.addAttribute("post", res);
         return "blog-edit";
     }
+    
+      /**
+     * POST http request that  edit and saves the change of Post object
+     * it set the new parameter to the retrieved object by id
+     * @param id of post  object retrieved from the view template
+     * @param title tile  object retrieved from the view template
+     * @param announcement announcement   object retrieved from the view template
+     * @param full_text full_text object
+     * @return a redirection to the http request for the list of all blog posts
+     */
 
     @PostMapping("/blog/{id}/edit")
 
@@ -84,6 +117,14 @@ public class BlogController {
 
         return "redirect:/blog";
     }
+    
+    /**
+     * POST http request that  delete the Post object  retrieved by id
+     * from website and database
+     * @param id of post  object retrieved from the view template
+
+     * @return a redirection to the http request for the list of all blog posts
+     */
 
     @PostMapping("/blog/{id}/remove")
 
