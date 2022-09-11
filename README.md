@@ -43,10 +43,14 @@ The main idea is a web blog and book showcase that provides user authentication 
 
 3) Press __Open WebStart page__ button (it will redirect you to the webpage http://localhost/MAMP/ )
 
-4) Please check the section on the webpage  __MySQL__   it should look like this :
+4) Please check the section  __MySQL__   on the webpage , it should look like this :
+
 Host    localhost
+
 Port    3306
+
 User    root
+
 Password    root
 
 
@@ -84,11 +88,12 @@ The Java version of the project is 17.
 
 
 
-### How to Run
+###  3# How to Run
 Now you should be able to open  http://localhost:8080/
 
 If the page won't load  it is  probably because your port 8080 is already used,  please try this [instruction](https://stackoverflow.com/questions/39632667/how-do-i-kill-the-process-currently-using-a-port-on-localhost-in-windows)
 
+Double check that MAMP server is started
 
 If the page is loaded, you can enter one of those credentials:
 
