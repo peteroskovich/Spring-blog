@@ -25,50 +25,10 @@ The main idea is a web blog and book showcase that provides user authentication 
 
 
 
-##  1# Installation
 
 
 
-
-
-
-
- To build and run this web application, first install [MAMP](https://www.mamp.info/) database on the official website.
-
-
-
-1) Open MAMP.exe on your desktop (Make sure __NOT__  MAMP PRO icon)
-
-2) Press __Start Server__ ( make sure the icon turns green )
-
-3) Press __Open WebStart page__ button (it will redirect you to the webpage http://localhost/MAMP/ )
-
-4) Please check the section  __MySQL__   on the webpage , it should look like this :
-
-Host    localhost
-
-Port    3306
-
-User    root
-
-Password    root
-
-
-
-5) If you see that the  __Port__ is different, please change  the file  `application.properties`      (you find it at    `Spring-blog-main\src\main\resources` ) 
-at  the line `spring.datasource.url=jdbc:mysql://${MYSQL_HOST:localhost}:3306/.....`  write the port that you see   instead  **3306** 
-
-
-
-
-
-
-
-
-
-
-
-###  2# How to Build
+###  1# How to Build
 
 
 
@@ -78,7 +38,7 @@ Now the project can be build using the maven command `mvn package`
 
 2) This will create  runnable jar in the `target` directory:
 
-* `target/shop-0.0.1-SNAPSHOT.jar` launch and it will start the spring application
+* `target/shop-0.0.1-SNAPSHOT.jar` launch it and it will start the spring application
 
 
 
@@ -88,12 +48,12 @@ The Java version of the project is 17.
 
 
 
-###  3# How to Run
+###  2# How to Run
 Now you should be able to open  http://localhost:8080/
 
 If the page won't load  it is  probably because your port 8080 is already used,  please try this [instruction](https://stackoverflow.com/questions/39632667/how-do-i-kill-the-process-currently-using-a-port-on-localhost-in-windows)
 
-Double check that MAMP server is started
+
 
 If the page is loaded, you can enter one of those credentials:
 
