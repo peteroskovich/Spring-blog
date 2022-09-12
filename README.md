@@ -34,7 +34,7 @@ The main idea is a web blog and book showcase that provides user authentication 
 
 Now the project can be build using the maven command `mvn package` 
 
-1) Open the command line in the directory where you downloaded __Spring-blog-main__ folder . 
+1) Open the command line in the directory where you downloaded __Spring-blog-main__ folder and write `mvn package` . 
 
 2) This will create  runnable jar in the `target` directory:
 
