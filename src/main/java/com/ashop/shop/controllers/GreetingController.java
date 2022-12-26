@@ -24,6 +24,11 @@ public class GreetingController {
     @Autowired
     private BookService bookService;
 
+    /**
+     * Handles the HTTP GET mapping request the list of created book posts
+     * @return a redirection to the main page where all books showcase are shown
+     */
+
     @GetMapping("/")
     public String greeting(Model model) {
         Iterable<Book> books = bookRepository.findAll();

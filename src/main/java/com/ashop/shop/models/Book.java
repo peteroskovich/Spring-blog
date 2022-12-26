@@ -16,7 +16,11 @@ public class Book implements Serializable {
     private String bookTitle, description;
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
-    //MEDIUMBLOB set the limit of 16MB of storage for the img column in database
+
+    /*
+     *  MEDIUMBLOB Allows to set the limit of 16MB of storage for the img column in database
+     */
+
     private String img;
 
     public Book(String bookTitle, String description, String img) {

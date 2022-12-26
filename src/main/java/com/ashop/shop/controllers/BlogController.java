@@ -49,6 +49,7 @@ public class BlogController {
      * @return a redirection to the http request for the list of all blog posts
      */
     @PostMapping("/blog/add")
+    @CrossOrigin
     public String blogPostAdd(@RequestParam String title, @RequestParam String announcement, @RequestParam String full_text) {
         Post post = new Post(title, announcement, full_text);
 //  instead   postRepository.save(post); delegate to separate services
@@ -80,7 +81,7 @@ public class BlogController {
      * @param id is not exist in database it will
      * @return redirect to all posts
      * Use Optional to store the retrieved post from database through postRepository
-     * @return  redirect to edit sample page
+     *  redirect to edit sample page
      */
 
     @GetMapping("/blog/{id}/edit")
