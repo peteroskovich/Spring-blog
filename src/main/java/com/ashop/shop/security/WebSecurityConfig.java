@@ -12,6 +12,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+/* The password inserted by the user is encripted through a BCryptPasswordEncoder.
+    inside password() is the result of encription of password in class SecuredPasswordGenerator
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
@@ -26,10 +29,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         ;
     }
 /*
-    @.anyMatchers  deny request from USER if it will try  bypass Security and digit URL Path commands like:
+    .anyMatchers  deny request from USER if it will try  bypass Security and digit URL Path commands like:
     /blog/{id}/edit
     /blog/remove
     /blog/add
+
+    .formLogin , .logout allow the authentication and provided the form by spring security
  */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
