@@ -4,19 +4,18 @@ import com.ashop.shop.models.Book;
 import com.ashop.shop.repositories.BookRepository;
 import com.ashop.shop.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.Optional;
 
 @Controller
-public class GreetingController {
+public class BookController {
 
     @Autowired
     private BookRepository bookRepository;
@@ -30,11 +29,28 @@ public class GreetingController {
      */
 
     @GetMapping("/")
-    public String greeting(Model model) {
-        Iterable<Book> books = bookRepository.findAll();
-        model.addAttribute("books", books);
+    public String greeting(@RequestParam(name = "page", defaultValue = "0") int page,
+                           @RequestParam(name = "size", defaultValue = "12") int size,
+                           Model model) {
+//        Iterable<Book> books = bookRepository.findAll();
+//        model.addAttribute("books", books);
+        Page<Book> bookPage = bookRepository.findAll(PageRequest.of(page, size));
+        model.addAttribute("books", bookPage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", bookPage.getTotalPages());
 
-        return "greeting";
+        return "home";
+    }
+
+    @RequestMapping(value="books", method = RequestMethod.GET)
+    public String listBooks(@RequestParam(name = "page", defaultValue = "0") int page,
+                            @RequestParam(name = "size", defaultValue = "12") int size,
+                            Model model) {
+        Page<Book> bookPage = bookRepository.findAll(PageRequest.of(page, size));
+        model.addAttribute("books", bookPage.getContent());
+        model.addAttribute("page", page);
+        model.addAttribute("totalPages", bookPage.getTotalPages());
+        return "list";
     }
 
     @GetMapping("/book/add")
@@ -102,6 +118,6 @@ public class GreetingController {
     public String loginSuccessHandler() {
         System.out.println("Logging user login success...");
 
-        return "greeting";
+        return "home";
     }
 }

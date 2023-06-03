@@ -6,14 +6,14 @@ public class SecuredPasswordGenerator {
 
     public static void main(String[] args) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String userPassword = "nim";
+        String userPassword = "user";
         String encodedPassword = encoder.encode(userPassword);
 
-        String adminPassword = "dim";
+        String adminPassword = "admin";
         String encodedPassword1= encoder.encode(adminPassword);
 
-        System.out.println(encodedPassword);
-        System.out.println(encodedPassword1);
+        System.out.println("---------user-------------"+encodedPassword);
+        System.out.println("----------admin------------"+encodedPassword1);
     }
 
 

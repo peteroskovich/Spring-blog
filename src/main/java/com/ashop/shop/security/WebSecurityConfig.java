@@ -20,11 +20,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
                 .passwordEncoder(new BCryptPasswordEncoder())
                 .withUser("user")
-                .password("$2a$10$qnNUAz3JqBlQK/QLdgzUeOIAUOw88MuYw/am7XF49Z3xuFTWJaCm2")
+                .password("$2a$10$Fujj3ETvkFFln9CUWp6mc.s/uhE5xvmUHoZ0ylknj2vSdGiWlrEUq")
                 .roles("USER")
                 .and()
                 .withUser("admin")
-                .password("$2a$10$eKITRbXD5yDlZtoTrZXIk.2c.Aulbj1rGDIsza6oEF2V/Ux6Dd15y")
+                .password("$2a$10$2jLy1uWU/tclpcErrwTqhOhmCFE.ps8lGecbdBLbI6K8oaZVJSWju")
                 .roles("ADMIN")
         ;
     }
